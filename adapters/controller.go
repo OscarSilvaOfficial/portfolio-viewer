@@ -10,6 +10,11 @@ type Controller struct {}
 func (controller *Controller) AddNewViewer(g *gin.Context) {
 	userAgent := g.Request.UserAgent()
 	viewer := factory.FactoryViewer(userAgent)
-	response := gin.H{"viewer": viewer.UserAgent()}
-	g.JSON(200, response)
+	response := map[string]string{"viewer": viewer.UserAgent()}
+	controller.Response(200, response)
+}
+
+func (controller *Controller) Response(statusCode int, data map[string]string) {
+	response := gin.H{"data": data}
+	g.JSON(statusCode, response)
 }
