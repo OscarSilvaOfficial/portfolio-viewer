@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"github.com/OscarSilvaOfficial/portfolio-viewer/adapters/factory"
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	r := gin.Default()
+	controller := factory.FactoryController(gin.Context{})
+	r.GET("/", controller.AddNewViewer)
+	r.Run()
 }
