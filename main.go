@@ -7,7 +7,7 @@ import (
 
 func main() {
 	r := gin.Default()
-	controller := factory.FactoryController(gin.Context{})
+	controller := factory.FactoryController()
 	r.GET("/", controller.AddNewViewer)
 	r.Run()
 }

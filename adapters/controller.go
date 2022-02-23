@@ -7,6 +7,9 @@ import (
 
 type Controller struct {}
 
-func (c *Controller) AddNewViewer(g *gin.Context) {
-	g.JSON(200, gin.H{"viewers": factory.FactoryViewer("userAgent")})
+func (controller *Controller) AddNewViewer(g *gin.Context) {
+	userAgent := g.Request.UserAgent()
+	viewer := factory.FactoryViewer(userAgent)
+	response := gin.H{"viewer": viewer.UserAgent()}
+	g.JSON(200, response)
 }
