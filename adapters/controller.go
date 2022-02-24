@@ -2,10 +2,13 @@ package adapters
 
 import (
 	usecases "github.com/OscarSilvaOfficial/portfolio-viewer/core/useCases"
+	"github.com/OscarSilvaOfficial/portfolio-viewer/ports"
 	"github.com/gin-gonic/gin"
 )
 
-type Controller struct{}
+type Controller struct {
+	Repository ports.ViewerRepository
+}
 
 func (controller *Controller) AddNewViewer(g *gin.Context) {
 	userAgent := g.Request.UserAgent()
