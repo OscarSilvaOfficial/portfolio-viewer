@@ -17,3 +17,8 @@ func (controller *Controller) Response(statusCode int, data map[string]string, g
 	response := gin.H{"data": data}
 	g.JSON(statusCode, response)
 }
+
+func FactoryController() Controller {
+	controller := Controller{}
+	return controller
+}

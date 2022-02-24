@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/OscarSilvaOfficial/portfolio-viewer/adapters/factory"
+	"github.com/OscarSilvaOfficial/portfolio-viewer/adapters"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-	controller := factory.FactoryController()
+	controller := adapters.FactoryController()
 	r.GET("/", controller.AddNewViewer)
 	r.Run()
 }
