@@ -1,17 +1,16 @@
 package adapters
 
 import (
-	"github.com/OscarSilvaOfficial/portfolio-viewer/core/factory"
+	usecases "github.com/OscarSilvaOfficial/portfolio-viewer/core/useCases"
 	"github.com/gin-gonic/gin"
 )
 
-type Controller struct {}
+type Controller struct{}
 
 func (controller *Controller) AddNewViewer(g *gin.Context) {
 	userAgent := g.Request.UserAgent()
-	viewer := factory.FactoryViewer(userAgent)
-	response := map[string]string{"viewer": viewer.UserAgent()}
-	controller.Response(200, response, g)
+	viewer := usecases.AddNewViewer(userAgent)
+	controller.Response(201, viewer, g)
 }
 
 func (controller *Controller) Response(statusCode int, data map[string]string, g *gin.Context) {
