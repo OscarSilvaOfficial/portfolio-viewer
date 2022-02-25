@@ -7,7 +7,7 @@ import (
 )
 
 type Controller struct {
-	Repository ports.ViewerRepository
+	repository ports.ViewerRepository
 }
 
 func (controller *Controller) AddNewViewer(g *gin.Context) {
@@ -21,7 +21,13 @@ func (controller *Controller) Response(statusCode int, data map[string]string, g
 	g.JSON(statusCode, response)
 }
 
-func FactoryController() Controller {
+func (controller *Controller) SetRepository(repository ports.ViewerRepository) Controller {
+	controller.repository = repository
+	return *controller
+}
+
+func FactoryController(repository ports.ViewerRepository) Controller {
 	controller := Controller{}
+	controller.SetRepository(repository)
 	return controller
 }
