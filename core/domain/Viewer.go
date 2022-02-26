@@ -4,11 +4,17 @@ type Viewer struct {
 	userAgent string
 }
 
-func (v *Viewer) SetUserAgent(userAgent string) Viewer {
-	v.userAgent = userAgent
-	return *v
+func (self *Viewer) SetUserAgent(userAgent string) *Viewer {
+	self.userAgent = userAgent
+	return self
 }
 
-func (v *Viewer) UserAgent() string {
-	return v.userAgent
+func (self *Viewer) UserAgent() string {
+	return self.userAgent
+}
+
+func FactoryViewer(userAgent string) Viewer {
+	viewer := Viewer{}
+	viewer.SetUserAgent(userAgent)
+	return viewer
 }

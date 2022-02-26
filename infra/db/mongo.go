@@ -16,28 +16,28 @@ type Mongo struct {
 	ctx              context.Context
 }
 
-func (m *Mongo) CreateDocument(document map[string]string) {
-	m.connection.InsertOne(m.ctx, document)
+func (self *Mongo) CreateDocument(document map[string]string) {
+	self.connection.InsertOne(self.ctx, document)
 }
 
-func (m *Mongo) SetStringConnection(stringConnection string) *Mongo {
-	m.stringConnection = stringConnection
-	return m
+func (self *Mongo) SetStringConnection(stringConnection string) *Mongo {
+	self.stringConnection = stringConnection
+	return self
 }
 
-func (m *Mongo) SetDatabase(database string) *Mongo {
-	m.database = database
-	return m
+func (self *Mongo) SetDatabase(database string) *Mongo {
+	self.database = database
+	return self
 }
 
-func (m *Mongo) SetCollection(collection string) *Mongo {
-	m.collection = collection
-	return m
+func (self *Mongo) SetCollection(collection string) *Mongo {
+	self.collection = collection
+	return self
 }
 
-func (m *Mongo) CreateConnection() {
+func (self *Mongo) CreateConnection() {
 
-	clientOptions := options.Client().ApplyURI(m.stringConnection)
+	clientOptions := options.Client().ApplyURI(self.stringConnection)
 
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 
@@ -53,8 +53,8 @@ func (m *Mongo) CreateConnection() {
 
 	log.Printf("[Mongo Connection] Connected to MongoDB!")
 
-	m.connection = client.Database(m.database).Collection(m.collection)
-	m.ctx = context.TODO()
+	self.connection = client.Database(self.database).Collection(self.collection)
+	self.ctx = context.TODO()
 
 }
 
