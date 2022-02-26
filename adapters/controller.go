@@ -12,7 +12,7 @@ type Controller struct {
 
 func (controller *Controller) AddNewViewer(g *gin.Context) {
 	userAgent := g.Request.UserAgent()
-	viewer := usecases.AddNewViewer(userAgent)
+	viewer := usecases.AddNewViewer(userAgent, controller.repository)
 	controller.Response(201, viewer, g)
 }
 

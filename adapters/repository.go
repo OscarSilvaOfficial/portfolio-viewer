@@ -1,14 +1,17 @@
 package adapters
 
-import "github.com/OscarSilvaOfficial/portfolio-viewer/ports"
+import (
+	"github.com/OscarSilvaOfficial/portfolio-viewer/core/domain"
+	"github.com/OscarSilvaOfficial/portfolio-viewer/ports"
+)
 
 type Repository struct {
 	driver ports.NoSQLPort
 }
 
-func (r *Repository) AddNewViewer(userAgent string) map[string]string {
-	document := map[string]string{"viewer": userAgent}
-	return r.driver.CreateDocument(document)
+func (r *Repository) AddNewViewer(viewer domain.Viewer) {
+	document := map[string]string{"viewer": viewer.UserAgent()}
+	r.driver.CreateDocument(document)
 }
 
 func (r *Repository) SetDriver(driver ports.NoSQLPort) Repository {

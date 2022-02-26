@@ -1,5 +1,7 @@
 package ports
 
+import "github.com/OscarSilvaOfficial/portfolio-viewer/core/domain"
+
 type ViewerRepository interface {
-	AddNewViewer(userAgent string) map[string]string
+	AddNewViewer(viewer domain.Viewer)
 }
